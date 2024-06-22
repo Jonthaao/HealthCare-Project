@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.FinalJayme.services.PacienteService;
 
 @RestController
-@RequestMapping("/aventura")
+@RequestMapping("/paciente")
 public class PacienteController {
 
     @Autowired

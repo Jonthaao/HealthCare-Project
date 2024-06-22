@@ -8,7 +8,7 @@ import com.br.FinalJayme.services.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-@RequestMapping("/trilha")
+@RequestMapping("/medico")
 public class MedicoController {
 
     @Autowired
