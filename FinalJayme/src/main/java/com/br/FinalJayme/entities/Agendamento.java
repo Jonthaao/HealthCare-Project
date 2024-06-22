@@ -1,13 +1,11 @@
 package com.br.FinalJayme.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Agendamento {
@@ -15,15 +13,18 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome;
-    private int idade;
-    private boolean habilitado;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Medico trilha;
+    private Date data;
+    private String hora;
+    private boolean disponibilidade;
 
     public Agendamento() {
+    }
+
+    public Agendamento(int id, Date data, String hora, boolean disponibilidade) {
+        this.id = id;
+        this.data = data;
+        this.hora = hora;
+        this.disponibilidade = disponibilidade;
     }
 
     public int getId() {
@@ -34,35 +35,28 @@ public class Agendamento {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Date getData() {
+        return data;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public int getIdade() {
-        return idade;
+    public String getHora() {
+        return hora;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
-    public boolean isHabilitado() {
-        return habilitado;
+    public boolean isDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
-    public Medico getTrilha() {
-        return trilha;
-    }
-
-    public void setTrilha(Medico trilha) {
-        this.trilha = trilha;
-    }
 }

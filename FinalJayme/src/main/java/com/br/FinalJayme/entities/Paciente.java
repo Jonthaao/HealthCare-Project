@@ -1,13 +1,9 @@
 package com.br.FinalJayme.entities;
 
-import java.util.Date;
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Paciente {
@@ -16,14 +12,21 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String localidade;
-    private Date data;
-
-    
-    @OneToMany(mappedBy = "aventura")
-    private List<Medico> trilhas;
+    private String cpf;
+    private String email;
+    private String endereco;
+    private String sexo;
 
     public Paciente() {
+    }
+
+    public Paciente(int id, String nome, String cpf, String email, String endereco, String sexo) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.endereco = endereco;
+        this.sexo = sexo;
     }
 
     public int getId() {
@@ -42,28 +45,36 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public String getLocalidade() {
-        return localidade;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setLocalidade(String localidade) {
-        this.localidade = localidade;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public Date getData() {
-        return data;
+    public String getEmail() {
+        return email;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public List<Medico> getTrilhas() {
-        return trilhas;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setTrilhas(List<Medico> trilhas) {
-        this.trilhas = trilhas;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
 }

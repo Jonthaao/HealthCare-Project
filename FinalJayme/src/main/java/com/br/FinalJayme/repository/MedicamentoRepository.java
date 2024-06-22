@@ -1,5 +1,11 @@
 package com.br.FinalJayme.repository;
 
-public class MedicamentoRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.br.FinalJayme.entities.Medicamento;
+
+@Repository
+public interface MedicamentoRepository extends JpaRepository<Medicamento, Integer> {
+
 }
