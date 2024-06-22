@@ -12,4 +12,7 @@ public class AgendamentoController {
 
     @Autowired
     AgendamentoService service;
+
+    @Autowired
+    AgendamentoService service;
 }

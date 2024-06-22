@@ -9,7 +9,5 @@ import com.br.FinalJayme.services.ConvenioService;
 @RestController
 @RequestMapping("/convenio")
 public class ConvenioController {
-
-    @Autowired
-    ConvenioService service;
+    
 }
