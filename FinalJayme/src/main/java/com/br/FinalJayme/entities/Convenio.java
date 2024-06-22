@@ -12,4 +12,6 @@ public class Convenio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    ///oi gente
+
 }
