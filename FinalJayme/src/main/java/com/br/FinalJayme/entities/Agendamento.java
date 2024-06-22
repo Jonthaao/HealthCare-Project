@@ -16,15 +16,22 @@ public class Agendamento {
     private Date data;
     private String hora;
     private boolean disponibilidade;
+    private Prontuario prontuario;
+    private Medico medico;
+    private Paciente paciente;
 
     public Agendamento() {
     }
 
-    public Agendamento(int id, Date data, String hora, boolean disponibilidade) {
+    public Agendamento(int id, Date data, String hora, boolean disponibilidade, Paciente paciente, Medico medico,
+            Prontuario prontuario) {
         this.id = id;
         this.data = data;
         this.hora = hora;
         this.disponibilidade = disponibilidade;
+        this.paciente = paciente;
+        this.medico = medico;
+        this.prontuario = prontuario;
     }
 
     public int getId() {
@@ -57,6 +64,30 @@ public class Agendamento {
 
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Prontuario getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Prontuario prontuario) {
+        this.prontuario = prontuario;
     }
 
 }

@@ -16,17 +16,24 @@ public class Paciente {
     private String email;
     private String endereco;
     private String sexo;
+    private Agendamento agendamento;
+    private Prontuario prontuario;
+    private Prescricao prescricao;
 
     public Paciente() {
     }
 
-    public Paciente(int id, String nome, String cpf, String email, String endereco, String sexo) {
+    public Paciente(int id, String nome, String cpf, String email, String endereco, String sexo,
+            Agendamento agendamento, Prontuario prontuario, Prescricao prescricao) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.endereco = endereco;
         this.sexo = sexo;
+        this.agendamento = agendamento;
+        this.prontuario = prontuario;
+        this.prescricao = prescricao;
     }
 
     public int getId() {
@@ -75,6 +82,30 @@ public class Paciente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
+
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
+    }
+
+    public Prescricao getPrescricao() {
+        return prescricao;
+    }
+
+    public void setPrescricao(Prescricao prescricao) {
+        this.prescricao = prescricao;
+    }
+
+    public Prontuario getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Prontuario prontuario) {
+        this.prontuario = prontuario;
     }
 
 }
