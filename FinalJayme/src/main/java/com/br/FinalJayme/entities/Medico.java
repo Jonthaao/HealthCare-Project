@@ -1,9 +1,12 @@
 package com.br.FinalJayme.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Medico {
@@ -15,15 +18,10 @@ public class Medico {
     private String nome;
     private String especialidade;
     private String crm;
-    private Agendamento agendamento;
-
-    public Medico(int id, String nome, String especialidade, String crm, Agendamento agendamento) {
-        this.id = id;
-        this.nome = nome;
-        this.especialidade = especialidade;
-        this.crm = crm;
-        this.agendamento = agendamento;
-    }
+    @OneToMany(mappedBy = "medico")
+    private List<Agendamento> agendamentos;
+    @OneToMany(mappedBy = "medico")
+    private List<Prescricao> prescricoes;
 
     public int getId() {
         return id;
@@ -57,12 +55,19 @@ public class Medico {
         this.crm = crm;
     }
 
-    public Agendamento getAgendamento() {
-        return agendamento;
+    public List<Agendamento> getAgendamento() {
+        return agendamentos;
     }
 
-    public void setAgendamento(Agendamento agendamento) {
-        this.agendamento = agendamento;
+    public void setAgendamento(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 
+    public List<Prescricao> getPrescricao() {
+        return prescricoes;
+    }
+
+    public void setPrescricao(List<Prescricao> prescricoes) {
+        this.prescricoes = prescricoes;
+    }
 }

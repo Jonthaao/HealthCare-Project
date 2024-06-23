@@ -15,27 +15,20 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private Date data;
     private String hora;
     private boolean disponibilidade;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Prontuario prontuario;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
     public Agendamento() {
-    }
-
-    public Agendamento(int id, Date data, String hora, boolean disponibilidade, Paciente paciente, Medico medico,
-            Prontuario prontuario) {
-        this.id = id;
-        this.data = data;
-        this.hora = hora;
-        this.disponibilidade = disponibilidade;
-        this.paciente = paciente;
-        this.medico = medico;
-        this.prontuario = prontuario;
     }
 
     public int getId() {

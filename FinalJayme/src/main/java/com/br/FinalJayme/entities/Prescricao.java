@@ -1,11 +1,15 @@
 package com.br.FinalJayme.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Prescricao {
@@ -14,21 +18,14 @@ public class Prescricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
     private Faturamento faturamento;
-    private Medicamento medicamento;
+    @OneToMany(mappedBy = "prescricao")
+    private List<Medicamento> medicamentos;
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
     private Date data;
-
-    public Prescricao(int id, Paciente paciente, Faturamento faturamento, Medicamento medicamento, Medico medico,
-            Date data) {
-        this.id = id;
-        this.paciente = paciente;
-        this.faturamento = faturamento;
-        this.medicamento = medicamento;
-        this.medico = medico;
-        this.data = data;
-    }
 
     public int getId() {
         return id;
@@ -54,12 +51,12 @@ public class Prescricao {
         this.faturamento = faturamento;
     }
 
-    public Medicamento getMedicamento() {
-        return medicamento;
+    public List<Medicamento> getMedicamento() {
+        return medicamentos;
     }
 
-    public void setMedicamento(Medicamento medicamento) {
-        this.medicamento = medicamento;
+    public void setMedicamento(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
     }
 
     public Medico getMedico() {

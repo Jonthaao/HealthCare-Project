@@ -1,11 +1,15 @@
 package com.br.FinalJayme.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Prontuario {
@@ -14,25 +18,21 @@ public class Prontuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String registros;
     private Date dataEntrada;
     private Date dataAlta;
+    private String registros;
     private String diagnostico;
-    private Paciente paciente;
-    private Agendamento agendamento;
-    private Convenio convenio;
 
-    public Prontuario(int id, String registros, Date dataEntrada, Date dataAlta, String diagnostico, Paciente paciente,
-            Agendamento agendamento, Convenio convenio) {
-        this.id = id;
-        this.registros = registros;
-        this.dataEntrada = dataEntrada;
-        this.dataAlta = dataAlta;
-        this.diagnostico = diagnostico;
-        this.paciente = paciente;
-        this.agendamento = agendamento;
-        this.convenio = convenio;
-    }
+    private Paciente paciente;
+
+    // Um Prontuário pode ter vários agendamentos(Retorno, nova consulta...)
+    @OneToMany(mappedBy = "prontuario")
+    private List<Agendamento> agendamentos;
+
+    // Um prontuário pode ter vários convênios. Como por exemplo, paciente ter 2
+    // planos de saúde)
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Convenio convenio;
 
     public int getId() {
         return id;
@@ -40,14 +40,6 @@ public class Prontuario {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getRegistros() {
-        return registros;
-    }
-
-    public void setRegistros(String registros) {
-        this.registros = registros;
     }
 
     public Date getDataEntrada() {
@@ -66,6 +58,14 @@ public class Prontuario {
         this.dataAlta = dataAlta;
     }
 
+    public String getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(String registros) {
+        this.registros = registros;
+    }
+
     public String getDiagnostico() {
         return diagnostico;
     }
@@ -82,12 +82,12 @@ public class Prontuario {
         this.paciente = paciente;
     }
 
-    public Agendamento getAgendamento() {
-        return agendamento;
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
     }
 
-    public void setAgendamento(Agendamento agendamento) {
-        this.agendamento = agendamento;
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 
     public Convenio getConvenio() {
@@ -97,4 +97,5 @@ public class Prontuario {
     public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
+
 }

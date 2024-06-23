@@ -14,16 +14,21 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
     private String cpf;
     private String email;
     private String endereco;
     private String sexo;
     @OneToMany(mappedBy = "paciente")
-    private List<Agendamento> agendamento;
+    private List<Agendamento> agendamentos;
+
     private Prontuario prontuario;
+
     @OneToMany(mappedBy = "paciente")
-    private List<Prescricao> prescricao;
+    private List<Prescricao> prescricoes;
+    @OneToMany(mappedBy = "paciente")
+    private List<Faturamento> faturamentos;
 
     public Paciente() {
     }
@@ -77,19 +82,19 @@ public class Paciente {
     }
 
     public List<Agendamento> getAgendamento() {
-        return agendamento;
+        return agendamentos;
     }
 
-    public void setAgendamento(List<Agendamento> agendamento) {
-        this.agendamento = agendamento;
+    public void setAgendamento(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 
     public List<Prescricao> getPrescricao() {
-        return prescricao;
+        return prescricoes;
     }
 
-    public void setPrescricao(List<Prescricao> prescricao) {
-        this.prescricao = prescricao;
+    public void setPrescricao(List<Prescricao> prescricoes) {
+        this.prescricoes = prescricoes;
     }
 
     public Prontuario getProntuario() {
@@ -98,6 +103,14 @@ public class Paciente {
 
     public void setProntuario(Prontuario prontuario) {
         this.prontuario = prontuario;
+    }
+
+    public List<Faturamento> getFaturamento() {
+        return faturamentos;
+    }
+
+    public void setFaturamento(List<Faturamento> faturamentos) {
+        this.faturamentos = faturamentos;
     }
 
 }

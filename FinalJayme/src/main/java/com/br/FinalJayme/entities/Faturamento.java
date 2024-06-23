@@ -1,9 +1,14 @@
 package com.br.FinalJayme.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Faturamento {
@@ -11,26 +16,18 @@ public class Faturamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Prescricao prescricao;
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
-    private Materiais materiais;
-    private Medicamento medicamento;
-    private Procedimento procedimento;
+    @OneToMany(mappedBy = "faturamento")
+    private List<Material> materiais;
+    @OneToMany(mappedBy = "faturamento")
+    private List<Medicamento> medicamentos;
+    @OneToMany(mappedBy = "faturamento")
+    private List<Procedimento> procedimentos;
     private Double valorTotal;
     private Boolean status;
-
-    public Faturamento(int id, Prescricao prescricao, Paciente paciente, Materiais materiais, Medicamento medicamento,
-            Procedimento procedimento, Double valorTotal, Boolean status) {
-        this.id = id;
-        this.prescricao = prescricao;
-        this.paciente = paciente;
-        this.materiais = materiais;
-        this.medicamento = medicamento;
-        this.procedimento = procedimento;
-        this.valorTotal = valorTotal;
-        this.status = status;
-    }
 
     public int getId() {
         return id;
@@ -56,28 +53,28 @@ public class Faturamento {
         this.paciente = paciente;
     }
 
-    public Materiais getMateriais() {
+    public List<Material> getMateriais() {
         return materiais;
     }
 
-    public void setMateriais(Materiais materiais) {
+    public void setMateriais(List<Material> materiais) {
         this.materiais = materiais;
     }
 
-    public Medicamento getMedicamento() {
-        return medicamento;
+    public List<Medicamento> getMedicamento() {
+        return medicamentos;
     }
 
-    public void setMedicamento(Medicamento medicamento) {
-        this.medicamento = medicamento;
+    public void setMedicamento(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
     }
 
-    public Procedimento getProcedimento() {
-        return procedimento;
+    public List<Procedimento> getProcedimento() {
+        return procedimentos;
     }
 
-    public void setProcedimento(Procedimento procedimento) {
-        this.procedimento = procedimento;
+    public void setProcedimento(List<Procedimento> procedimentos) {
+        this.procedimentos = procedimentos;
     }
 
     public Double getValorTotal() {
