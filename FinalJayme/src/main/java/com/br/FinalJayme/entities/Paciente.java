@@ -1,9 +1,12 @@
 package com.br.FinalJayme.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Paciente {
@@ -16,24 +19,13 @@ public class Paciente {
     private String email;
     private String endereco;
     private String sexo;
-    private Agendamento agendamento;
+    @OneToMany(mappedBy = "paciente")
+    private List<Agendamento> agendamento;
     private Prontuario prontuario;
-    private Prescricao prescricao;
+    @OneToMany(mappedBy = "paciente")
+    private List<Prescricao> prescricao;
 
     public Paciente() {
-    }
-
-    public Paciente(int id, String nome, String cpf, String email, String endereco, String sexo,
-            Agendamento agendamento, Prontuario prontuario, Prescricao prescricao) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.endereco = endereco;
-        this.sexo = sexo;
-        this.agendamento = agendamento;
-        this.prontuario = prontuario;
-        this.prescricao = prescricao;
     }
 
     public int getId() {
@@ -84,19 +76,19 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public Agendamento getAgendamento() {
+    public List<Agendamento> getAgendamento() {
         return agendamento;
     }
 
-    public void setAgendamento(Agendamento agendamento) {
+    public void setAgendamento(List<Agendamento> agendamento) {
         this.agendamento = agendamento;
     }
 
-    public Prescricao getPrescricao() {
+    public List<Prescricao> getPrescricao() {
         return prescricao;
     }
 
-    public void setPrescricao(Prescricao prescricao) {
+    public void setPrescricao(List<Prescricao> prescricao) {
         this.prescricao = prescricao;
     }
 

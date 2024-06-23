@@ -2,10 +2,12 @@ package com.br.FinalJayme.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Agendamento {
@@ -17,7 +19,9 @@ public class Agendamento {
     private String hora;
     private boolean disponibilidade;
     private Prontuario prontuario;
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
     public Agendamento() {
