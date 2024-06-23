@@ -1,9 +1,11 @@
 package com.br.FinalJayme.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Procedimento {
@@ -12,18 +14,11 @@ public class Procedimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Faturamento faturamento;
     private String nome;
     private String descricao;
-    private Double alor;
-
-    public Procedimento(int id, Faturamento faturamento, String nome, String descricao, Double alor) {
-        this.id = id;
-        this.faturamento = faturamento;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.alor = alor;
-    }
+    private Double valor;
 
     public int getId() {
         return id;
@@ -57,11 +52,11 @@ public class Procedimento {
         this.descricao = descricao;
     }
 
-    public Double getAlor() {
-        return alor;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setAlor(Double alor) {
-        this.alor = alor;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 }

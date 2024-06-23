@@ -1,9 +1,11 @@
 package com.br.FinalJayme.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Medicamento {
@@ -12,21 +14,13 @@ public class Medicamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Medicamento medicamento;
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Faturamento faturamento;
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Prescricao prescricao;
     private String nome;
     private String descricao;
     private Double valor;
-
-    public Medicamento(int id, Medicamento medicamento, Prescricao prescricao, String nome, String descricao,
-            Double valor) {
-        this.id = id;
-        this.medicamento = medicamento;
-        this.prescricao = prescricao;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
 
     public int getId() {
         return id;
@@ -36,12 +30,12 @@ public class Medicamento {
         this.id = id;
     }
 
-    public Medicamento getMedicamento() {
-        return medicamento;
+    public Faturamento getMedicamento() {
+        return faturamento;
     }
 
-    public void setMedicamento(Medicamento medicamento) {
-        this.medicamento = medicamento;
+    public void setFaturamento(Faturamento medicamento) {
+        this.faturamento = medicamento;
     }
 
     public Prescricao getPrescricao() {
