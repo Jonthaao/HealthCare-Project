@@ -18,8 +18,9 @@ public class Convenio {
     private int id;
 
     private String tipo;
-    @JsonIgnore
 
+    // Convênio pode ter vários prontuários
+    @JsonIgnore
     @OneToMany(mappedBy = "convenio")
     private List<Prontuario> prontuarios;
 

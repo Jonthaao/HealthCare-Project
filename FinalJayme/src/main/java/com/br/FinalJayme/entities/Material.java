@@ -14,8 +14,10 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    //Um faturamento pode ter vários materiais
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Faturamento faturamento;
+    
     private String nome;
     private String descricao;
     private Double valor;

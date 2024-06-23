@@ -3,6 +3,8 @@ package com.br.FinalJayme.entities;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Prontuario {
@@ -23,9 +26,11 @@ public class Prontuario {
     private String registros;
     private String diagnostico;
 
+    @OneToOne(mappedBy = "prontuario", cascade = CascadeType.ALL)
     private Paciente paciente;
 
     // Um Prontuário pode ter vários agendamentos(Retorno, nova consulta...)
+    @JsonIgnore
     @OneToMany(mappedBy = "prontuario")
     private List<Agendamento> agendamentos;
 

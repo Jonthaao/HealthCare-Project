@@ -2,11 +2,14 @@ package com.br.FinalJayme.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Paciente {
@@ -20,13 +23,22 @@ public class Paciente {
     private String email;
     private String endereco;
     private String sexo;
+
+    //Um paciente pode ter vários agendamentos
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Agendamento> agendamentos;
-
+    
+    @OneToOne
     private Prontuario prontuario;
 
+    // Um paciente pode ter várias precrições.
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Prescricao> prescricoes;
+    
+    //Um paciente pode ter vários faturamentos.
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Faturamento> faturamentos;
 

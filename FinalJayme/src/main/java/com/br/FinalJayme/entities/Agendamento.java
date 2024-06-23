@@ -20,11 +20,15 @@ public class Agendamento {
     private String hora;
     private boolean disponibilidade;
 
+    //Vários agendamentos podem estar ligados a 1 prontuário
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Prontuario prontuario;
 
+    //Um médico pode ter vários agendamentos
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
+
+    //Um paciente pode ter vários agendamento
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 

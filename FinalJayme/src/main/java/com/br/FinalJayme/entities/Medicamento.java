@@ -14,10 +14,14 @@ public class Medicamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // Um faturamento pode ter vários medicamentos
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Faturamento faturamento;
+
+    // Uma prescrição pode ter vários medicamentos
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Prescricao prescricao;
+    
     private String nome;
     private String descricao;
     private Double valor;

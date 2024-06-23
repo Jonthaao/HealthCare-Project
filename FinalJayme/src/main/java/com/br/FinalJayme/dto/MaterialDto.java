@@ -1,17 +1,17 @@
 package com.br.FinalJayme.dto;
 
-import com.br.FinalJayme.entities.Medicamento;
+import com.br.FinalJayme.entities.Material;
 
-public class MedicamentoDto {
+public class MaterialDto {
 
     private String nome;
     private String descricao;
     private Double valor;
 
-    public MedicamentoDto(Medicamento medicamento){
-        this.nome = medicamento.getNome();
-        this.descricao = medicamento.getDescricao();
-        this.valor = medicamento.getValor();
+    public MaterialDto(Material material) {
+        this.nome = material.getNome();
+        this.descricao = material.getDescricao();
+        this.valor = material.getValor();
     }
 
     public String getNome() {
@@ -37,5 +37,4 @@ public class MedicamentoDto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    
 }
