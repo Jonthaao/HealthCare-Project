@@ -1,17 +1,17 @@
 package com.br.FinalJayme.dto;
 
-import com.br.FinalJayme.entities.Materiais;
+import com.br.FinalJayme.entities.Material;
 
-public class MateriaisDto {
+public class MaterialDto {
 
     private String nome;
     private String descricao;
     private Double valor;
 
-    public MateriaisDto(Materiais materiais) {
-        this.nome = materiais.getNome();
-        this.descricao = materiais.getDescricao();
-        this.valor = materiais.getValor();
+    public MaterialDto(Material material) {
+        this.nome = material.getNome();
+        this.descricao = material.getDescricao();
+        this.valor = material.getValor();
     }
 
     public String getNome() {

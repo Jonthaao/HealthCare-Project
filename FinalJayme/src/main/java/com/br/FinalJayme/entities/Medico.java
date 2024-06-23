@@ -2,6 +2,8 @@ package com.br.FinalJayme.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +20,14 @@ public class Medico {
     private String nome;
     private String especialidade;
     private String crm;
+
+    //Um médico pode ter vários agendamentos
+    @JsonIgnore
     @OneToMany(mappedBy = "medico")
     private List<Agendamento> agendamentos;
+    
+    //Um médico pode fazer várias prescrições
+    @JsonIgnore
     @OneToMany(mappedBy = "medico")
     private List<Prescricao> prescricoes;
 

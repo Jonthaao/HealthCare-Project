@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.br.FinalJayme.entities.Material;
 
 @Repository
-public interface MateriaisRepository extends JpaRepository<Material, Integer> {
+public interface MaterialRepository extends JpaRepository<Material, Integer> {
 
 }

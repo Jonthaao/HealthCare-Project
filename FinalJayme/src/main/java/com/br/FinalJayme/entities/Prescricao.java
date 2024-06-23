@@ -3,6 +3,8 @@ package com.br.FinalJayme.entities;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Prescricao {
@@ -18,13 +21,22 @@ public class Prescricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Paciente paciente;
+    @OneToOne(mappedBy = "prescricao", cascade = CascadeType.ALL)
     private Faturamento faturamento;
+
+    //Um paciente pode ter várias precriações
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Paciente paciente;  
+
+    //Uma precrição pode ter vários medicamentos
+    @JsonIgnore
     @OneToMany(mappedBy = "prescricao")
     private List<Medicamento> medicamentos;
+   
+    //Um médico pode ter várias precrições
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
+    
     private Date data;
 
     public int getId() {
