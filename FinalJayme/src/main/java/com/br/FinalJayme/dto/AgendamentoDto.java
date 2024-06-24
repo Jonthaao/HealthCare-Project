@@ -10,7 +10,7 @@ public class AgendamentoDto {
     private String hora;
     private boolean disponibilidade;
 
-    public AgendamentoDto(Agendamento agendamento){
+    public AgendamentoDto(Agendamento agendamento) {
         this.data = agendamento.getData();
         this.hora = agendamento.getHora();
         this.disponibilidade = agendamento.isDisponibilidade();
@@ -39,7 +39,5 @@ public class AgendamentoDto {
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
-
-    
 
 }
