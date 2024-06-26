@@ -29,11 +29,6 @@ public class Prontuario {
     @OneToOne(mappedBy = "prontuario", cascade = CascadeType.ALL)
     private Paciente paciente;
 
-    // Um Prontuário pode ter vários agendamentos(Retorno, nova consulta...)
-    @JsonIgnore
-    @OneToMany(mappedBy = "prontuario")
-    private List<Agendamento> agendamentos;
-
     // Um prontuário pode ter vários convênios. Como por exemplo, paciente ter 2
     // planos de saúde)
     @ManyToOne(cascade = CascadeType.REFRESH)
@@ -85,14 +80,6 @@ public class Prontuario {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
-    }
-
-    public List<Agendamento> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void setAgendamentos(List<Agendamento> agendamentos) {
-        this.agendamentos = agendamentos;
     }
 
     public Convenio getConvenio() {

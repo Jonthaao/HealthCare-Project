@@ -21,9 +21,8 @@ public class AgendamentoService {
         return "Cadastrado com sucesso!";
     }
 
-    public List<AgendamentoDto> lista() {
+    public List<AgendamentoDto> listar() {
         List<Agendamento> agendamentos = repository.findAll();
-
         return agendamentos.stream().map(x -> new AgendamentoDto(x)).collect(Collectors.toList());
     }
 
