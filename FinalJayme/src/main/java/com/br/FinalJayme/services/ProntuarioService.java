@@ -21,7 +21,7 @@ public class ProntuarioService {
         return "Cadastrado com sucesso!";
     }
 
-    public List<ProntuarioDto> lista() {
+    public List<ProntuarioDto> listar() {
         List<Prontuario> prontuarios = repository.findAll();
         return prontuarios.stream().map(x -> new ProntuarioDto(x)).collect(Collectors.toList());
     }

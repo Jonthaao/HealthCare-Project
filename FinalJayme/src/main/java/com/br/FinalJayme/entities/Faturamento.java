@@ -19,22 +19,19 @@ public class Faturamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @OneToOne
     private Prescricao prescricao;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Material> materiais;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Medicamento> medicamentos;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Procedimento> procedimentos;
 

@@ -28,7 +28,7 @@ public class MedicoService {
     }
 
     // Criando a lista de médicos que buscam as informações no DTO.
-    public List<MedicoDto> lista() {
+    public List<MedicoDto> listar() {
         List<Medico> medicos = repository.findAll();
         return medicos.stream().map(x -> new MedicoDto(x)).collect(Collectors.toList());
     }

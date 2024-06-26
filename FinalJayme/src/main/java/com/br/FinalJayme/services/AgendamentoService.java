@@ -26,4 +26,6 @@ public class AgendamentoService {
         return agendamentos.stream().map(x -> new AgendamentoDto(x)).collect(Collectors.toList());
     }
 
+
+
 }
