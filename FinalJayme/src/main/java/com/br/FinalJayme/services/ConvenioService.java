@@ -18,7 +18,7 @@ public class ConvenioService {
     @Autowired
     ConvenioRepository repository;
 
-    public List<ConvenioDto> lista() {
+    public List<ConvenioDto> listar() {
         List<Convenio> convenios = repository.findAll();
         return convenios.stream().map(x -> new ConvenioDto(x)).collect(Collectors.toList());
     }

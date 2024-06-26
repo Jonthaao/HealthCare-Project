@@ -21,7 +21,7 @@ public class PrescricaoService {
         return "Cadastrado com sucesso!";
     }
 
-    public List<PrescricaoDto> lista(){
+    public List<PrescricaoDto> listar(){
         List<Prescricao> prescricoes = repository.findAll();
         return prescricoes.stream().map(x -> new PrescricaoDto(x)).collect(Collectors.toList());
     }

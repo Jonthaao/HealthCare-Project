@@ -25,10 +25,10 @@ public class MedicoController {
     public ResponseEntity<String> cadastrar(Medico medico) {
         return new ResponseEntity<>(service.cadastro(medico), HttpStatus.OK);
     }
-    
+
     @GetMapping("/lista")
-    public ResponseEntity <List<MedicoDto>> listar(){
-        return new ResponseEntity<>(service.lista(), HttpStatus.OK);
+    public ResponseEntity<List<MedicoDto>> listar() {
+        return new ResponseEntity<>(service.listar(), HttpStatus.OK);
     }
 
 }

@@ -29,6 +29,7 @@ public class AgendamentoService {
         return agendamentos.stream().map(x -> new AgendamentoDto(x)).collect(Collectors.toList());
     }
 
+
     public ResponseEntity<String> deletar(@PathVariable("id") int id) {
         Agendamento agendamento = repository.findById(id).orElse(null);
 
@@ -57,5 +58,6 @@ public class AgendamentoService {
 
         return new ResponseEntity<>("Editado com sucesso!", HttpStatus.OK);
     }
+
 
 }

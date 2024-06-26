@@ -21,7 +21,7 @@ public class ProcedimentoService {
         return "Cadastrado com sucesso!";
     }
 
-    public List<ProcedimentoDto> lista() {
+    public List<ProcedimentoDto> listar() {
         List<Procedimento> procedimentos = repository.findAll();
         return procedimentos.stream().map(x -> new ProcedimentoDto(x)).collect(Collectors.toList());
     }

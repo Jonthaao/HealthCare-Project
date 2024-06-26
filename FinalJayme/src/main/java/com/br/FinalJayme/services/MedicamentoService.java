@@ -21,7 +21,7 @@ public class MedicamentoService {
         return "Cadastrado!";
     }
 
-    public List<MedicamentoDto> lista() {
+    public List<MedicamentoDto> listar() {
         List<Medicamento> medicamentos = repository.findAll();
         return medicamentos.stream().map(x -> new MedicamentoDto(x)).collect(Collectors.toList());
     }

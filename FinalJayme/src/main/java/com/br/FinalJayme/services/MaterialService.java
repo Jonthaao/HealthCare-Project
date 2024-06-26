@@ -16,7 +16,7 @@ public class MaterialService {
     @Autowired
     MaterialRepository repository;
 
-    public List<MaterialDto> lista() {
+    public List<MaterialDto> listar() {
         List<Material> materiais = repository.findAll();
         return materiais.stream().map(x -> new MaterialDto(x)).collect(Collectors.toList());
     }
