@@ -24,15 +24,15 @@ public class Faturamento {
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
-    @JsonIgnore
+   
     @OneToMany(mappedBy = "faturamento")
     private List<Material> materiais;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "faturamento")
     private List<Medicamento> medicamentos;
 
-    @JsonIgnore
+  
     @OneToMany(mappedBy = "faturamento")
     private List<Procedimento> procedimentos;
 
