@@ -13,7 +13,7 @@ public class ProntuarioDto {
     private String diagnostico;
     private Paciente paciente;
 
-    public ProntuarioDto(Prontuario prontuario){
+    public ProntuarioDto(Prontuario prontuario) {
         this.registros = prontuario.getRegistros();
         this.dataEntrada = prontuario.getDataEntrada();
         this.dataAlta = prontuario.getDataAlta();
@@ -61,6 +61,4 @@ public class ProntuarioDto {
         this.paciente = paciente;
     }
 
-    
-    
 }

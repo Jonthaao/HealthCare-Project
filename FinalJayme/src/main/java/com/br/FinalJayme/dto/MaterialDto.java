@@ -2,6 +2,8 @@ package com.br.FinalJayme.dto;
 
 import com.br.FinalJayme.entities.Material;
 
+import jakarta.persistence.OneToMany;
+
 public class MaterialDto {
 
     private String nome;
@@ -37,4 +39,5 @@ public class MaterialDto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
 }

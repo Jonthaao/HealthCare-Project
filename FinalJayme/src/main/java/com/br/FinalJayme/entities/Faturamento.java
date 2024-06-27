@@ -26,12 +26,15 @@ public class Faturamento {
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Material> materiais;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Medicamento> medicamentos;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faturamento")
     private List<Procedimento> procedimentos;
 
@@ -62,7 +65,7 @@ public class Faturamento {
         this.paciente = paciente;
     }
 
-    public List<Material> getMateriais() {
+    public List<Material> getMaterial() {
         return materiais;
     }
 
@@ -100,6 +103,22 @@ public class Faturamento {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public List<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    public List<Procedimento> getProcedimentos() {
+        return procedimentos;
+    }
+
+    public void setProcedimentos(List<Procedimento> procedimentos) {
+        this.procedimentos = procedimentos;
     }
 
 }

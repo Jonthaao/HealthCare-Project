@@ -33,7 +33,7 @@ public class FaturamentoService {
 
     public Double calcularValorTotal(Faturamento faturamento) {
         double valorTotalMaterial = 0.0;
-        for (Material material : faturamento.getMateriais()) {
+        for (Material material : faturamento.getMaterial()) {
             valorTotalMaterial += material.getValor();
         }
 

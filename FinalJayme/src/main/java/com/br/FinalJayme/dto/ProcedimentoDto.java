@@ -6,10 +6,12 @@ public class ProcedimentoDto {
 
     private String nome;
     private String descricao;
+    private Double valor;
 
-    public ProcedimentoDto(Procedimento procedimento){
+    public ProcedimentoDto(Procedimento procedimento) {
         this.nome = procedimento.getNome();
         this.descricao = procedimento.getDescricao();
+        this.valor = procedimento.getValor();
     }
 
     public String getDescricao() {
@@ -27,5 +29,13 @@ public class ProcedimentoDto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.br.FinalJayme.dto.AgendamentoDto;
@@ -28,7 +29,6 @@ public class AgendamentoService {
         List<Agendamento> agendamentos = repository.findAll();
         return agendamentos.stream().map(x -> new AgendamentoDto(x)).collect(Collectors.toList());
     }
-
 
     public ResponseEntity<String> deletar(@PathVariable("id") int id) {
         Agendamento agendamento = repository.findById(id).orElse(null);
@@ -58,6 +58,5 @@ public class AgendamentoService {
 
         return new ResponseEntity<>("Editado com sucesso!", HttpStatus.OK);
     }
-
 
 }
