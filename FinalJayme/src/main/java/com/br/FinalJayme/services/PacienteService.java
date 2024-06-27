@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.br.FinalJayme.dto.PacienteDto;
 import com.br.FinalJayme.entities.Paciente;
@@ -25,6 +28,39 @@ public class PacienteService {
         List<Paciente> pacientes = repository.findAll();
 
         return pacientes.stream().map(x -> new PacienteDto(x)).collect(Collectors.toList());
+    }
+
+    public ResponseEntity<String> deletar(@PathVariable("id") int id) {
+        Paciente paciente = repository.findById(id).orElse(null);
+
+        if (paciente != null) {
+            repository.delete(paciente);
+            return new ResponseEntity<>("Deletado com sucesso!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Nao encontrado!", HttpStatus.NOT_FOUND);
+
+    }
+
+    public ResponseEntity<String> editar(Paciente newPaciente, @PathVariable("id") int id) {
+        Paciente paciente = repository.findById(id).orElse(null);
+
+        if (paciente == null) {
+            return new ResponseEntity<>("Paciente não encontrado!", HttpStatus.OK);
+        }
+
+        paciente.setAgendamento(newPaciente.getAgendamento());
+        paciente.setCpf(newPaciente.getCpf());
+        paciente.setEmail(newPaciente.getEmail());
+        paciente.setEndereco(newPaciente.getEndereco());
+        paciente.setFaturamento(newPaciente.getFaturamento());
+        paciente.setNome(newPaciente.getNome());
+        paciente.setPrescricao(newPaciente.getPrescricao());
+        paciente.setProntuario(newPaciente.getProntuario());
+        paciente.setSexo(newPaciente.getSexo());
+
+        repository.save(paciente);
+
+        return new ResponseEntity<>("Editado com sucesso!", HttpStatus.OK);
     }
 
 }
