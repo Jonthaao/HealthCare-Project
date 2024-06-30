@@ -2,7 +2,6 @@ package com.br.FinalJayme.dto;
 
 import java.util.List;
 
-import com.br.FinalJayme.entities.Faturamento;
 import com.br.FinalJayme.entities.Material;
 import com.br.FinalJayme.entities.Medicamento;
 import com.br.FinalJayme.entities.Procedimento;
@@ -22,11 +21,6 @@ public class FaturamentoDto {
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     private List<Procedimento> procedimentos;
-
-    public FaturamentoDto(Faturamento faturamento) {
-        this.valorTotal = faturamento.getValorTotal();
-        this.status = faturamento.getStatus();
-    }
 
     public Boolean getStatus() {
         return status;

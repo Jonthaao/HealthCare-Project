@@ -5,9 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -28,8 +30,8 @@ public class Medico {
     
     //Um médico pode fazer várias prescrições
     @JsonIgnore
-    @OneToMany(mappedBy = "medico")
-    private List<Prescricao> prescricoes;
+    @ManyToMany(mappedBy = "medicos", fetch = FetchType.EAGER)
+    List<Prescricao> prescricoes;
 
     public int getId() {
         return id;

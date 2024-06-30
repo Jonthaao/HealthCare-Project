@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Prontuario {
@@ -22,7 +21,8 @@ public class Prontuario {
     private String registros;
     private String diagnostico;
 
-    @OneToOne(mappedBy = "prontuario", cascade = CascadeType.ALL)
+    //N prontuários para 1 paciente
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 
     // Um prontuário pode ter vários convênios. Como por exemplo, paciente ter 2

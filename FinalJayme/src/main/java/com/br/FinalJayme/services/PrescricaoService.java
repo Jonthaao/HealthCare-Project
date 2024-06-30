@@ -48,10 +48,9 @@ public class PrescricaoService {
         }
 
         prescricao.setData(newPrescricao.getData());
-        prescricao.setFaturamento(newPrescricao.getFaturamento());
-        prescricao.setMedicamento(newPrescricao.getMedicamento());
         prescricao.setPaciente(newPrescricao.getPaciente());
-        prescricao.setMedico(newPrescricao.getMedico());
+        prescricao.setMedicamentos(newPrescricao.getMedicamentos());
+        prescricao.setMedicos(newPrescricao.getMedicos());
 
         repository.save(prescricao);
 
