@@ -22,6 +22,11 @@ public class AgendamentoService {
 
     public String cadastro(Agendamento agendamento) {
         repository.save(agendamento);
+
+        if (agendamento.isDisponibilidade() == false){
+            return "Agenda indisponível";
+        }
+        
         return "Cadastrado com sucesso!";
     }
 

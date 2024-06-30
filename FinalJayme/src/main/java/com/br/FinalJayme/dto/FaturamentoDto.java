@@ -1,26 +1,24 @@
 package com.br.FinalJayme.dto;
 
-import java.util.List;
+import com.br.FinalJayme.entities.Faturamento;
+import com.br.FinalJayme.entities.Paciente;
 
-import com.br.FinalJayme.entities.Material;
-import com.br.FinalJayme.entities.Medicamento;
-import com.br.FinalJayme.entities.Procedimento;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.ManyToOne;
 
 public class FaturamentoDto {
 
-    private Double valorTotal;
     private Boolean status;
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private List<Material> materiais;
+    private int quantidadeMaterial;
+    private int quantidadeProcedimento;
+    private int quantidadeMedicamento;
+    private Paciente paciente;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private List<Medicamento> medicamentos;
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private List<Procedimento> procedimentos;
+    public FaturamentoDto(Faturamento faturamento){
+        this.status = faturamento.getStatus();
+        this.paciente = faturamento.getPaciente();
+        this.quantidadeMaterial = faturamento.getQuantidadeMaterial();
+        this.quantidadeMedicamento = faturamento.getQuantidadeMedicamento();
+        this.quantidadeProcedimento = faturamento.getQuantidadeProcedimento();
+    }
 
     public Boolean getStatus() {
         return status;
@@ -30,36 +28,37 @@ public class FaturamentoDto {
         this.status = status;
     }
 
-    public Double getValorTotal() {
-        return valorTotal;
+    public int getQuantidadeMaterial() {
+        return quantidadeMaterial;
     }
 
-    public void setValorTotal(Double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setQuantidadeMaterial(int quantidadeMaterial) {
+        this.quantidadeMaterial = quantidadeMaterial;
     }
 
-    public List<Material> getMateriais() {
-        return materiais;
+    public int getQuantidadeProcedimento() {
+        return quantidadeProcedimento;
     }
 
-    public void setMateriais(List<Material> materiais) {
-        this.materiais = materiais;
+    public void setQuantidadeProcedimento(int quantidadeProcedimento) {
+        this.quantidadeProcedimento = quantidadeProcedimento;
     }
 
-    public List<Medicamento> getMedicamentos() {
-        return medicamentos;
+    public int getQuantidadeMedicamento() {
+        return quantidadeMedicamento;
     }
 
-    public void setMedicamentos(List<Medicamento> medicamentos) {
-        this.medicamentos = medicamentos;
+    public void setQuantidadeMedicamento(int quantidadeMedicamento) {
+        this.quantidadeMedicamento = quantidadeMedicamento;
     }
 
-    public List<Procedimento> getProcedimentos() {
-        return procedimentos;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setProcedimentos(List<Procedimento> procedimentos) {
-        this.procedimentos = procedimentos;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
-
+    
 }
+

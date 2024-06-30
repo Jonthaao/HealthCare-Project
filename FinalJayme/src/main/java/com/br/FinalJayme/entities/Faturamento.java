@@ -94,6 +94,4 @@ public class Faturamento {
         this.status = status;
     }
 
- 
-
 }
