@@ -7,12 +7,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Prescricao {
@@ -20,24 +22,21 @@ public class Prescricao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private Date data;
 
-    @OneToOne(mappedBy = "prescricao", cascade = CascadeType.ALL)
-    private Faturamento faturamento;
-
-    //Um paciente pode ter várias precriações
+    //N precriações para 1 paciente
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;  
 
-    //Uma precrição pode ter vários medicamentos
+    //N precrições para N medicamentos
     @JsonIgnore
-    @OneToMany(mappedBy = "prescricao")
-    private List<Medicamento> medicamentos;
+    @ManyToMany(mappedBy = "prescricoes", fetch = FetchType.EAGER)
+    List<Medicamento> medicamentos;
    
-    //Um médico pode ter várias precrições
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Medico medico;
-    
-    private Date data;
+    //N médicos podemm ter N precrições
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "prescricao_medico", joinColumns = @JoinColumn(name = "prescricao_id"), inverseJoinColumns = @JoinColumn(name = "medico_id"))
+    List<Medico> medicos;
 
     public int getId() {
         return id;
@@ -45,6 +44,14 @@ public class Prescricao {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public Paciente getPaciente() {
@@ -55,36 +62,22 @@ public class Prescricao {
         this.paciente = paciente;
     }
 
-    public Faturamento getFaturamento() {
-        return faturamento;
-    }
-
-    public void setFaturamento(Faturamento faturamento) {
-        this.faturamento = faturamento;
-    }
-
-    public List<Medicamento> getMedicamento() {
+    public List<Medicamento> getMedicamentos() {
         return medicamentos;
     }
 
-    public void setMedicamento(List<Medicamento> medicamentos) {
+    public void setMedicamentos(List<Medicamento> medicamentos) {
         this.medicamentos = medicamentos;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public List<Medico> getMedicos() {
+        return medicos;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
     }
 
-    public Date getData() {
-        return data;
-    }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
 
 }

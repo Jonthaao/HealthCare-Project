@@ -11,7 +11,6 @@ public class PrescricaoDto {
     private Date data;
 
     public PrescricaoDto(Prescricao prescricao){
-        this.medico = prescricao.getMedico();
         this.data = prescricao.getData();
     }
 

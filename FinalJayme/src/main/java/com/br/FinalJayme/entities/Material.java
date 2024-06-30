@@ -1,11 +1,15 @@
 package com.br.FinalJayme.entities;
 
-import jakarta.persistence.CascadeType;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Material {
@@ -14,9 +18,10 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    // Um faturamento pode ter vários materiais
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Faturamento faturamento;
+    // N materiais em N faturamentos
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "material_faturamento", joinColumns = @JoinColumn(name = "material_id"), inverseJoinColumns = @JoinColumn(name = "faturamento_id"))
+    List<Faturamento> faturamentos;
 
     private String nome;
     private String descricao;
@@ -28,14 +33,6 @@ public class Material {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Faturamento getFaturamento() {
-        return faturamento;
-    }
-
-    public void setFaturamento(Faturamento faturamento) {
-        this.faturamento = faturamento;
     }
 
     public String getNome() {
@@ -60,6 +57,14 @@ public class Material {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public List<Faturamento> getFaturamentos() {
+        return faturamentos;
+    }
+
+    public void setFaturamentos(List<Faturamento> faturamentos) {
+        this.faturamentos = faturamentos;
     }
 
 }

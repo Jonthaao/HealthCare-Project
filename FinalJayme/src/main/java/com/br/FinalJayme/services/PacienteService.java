@@ -47,15 +47,11 @@ public class PacienteService {
         if (paciente == null) {
             return new ResponseEntity<>("Paciente não encontrado!", HttpStatus.OK);
         }
-
-        paciente.setAgendamento(newPaciente.getAgendamento());
+        
         paciente.setCpf(newPaciente.getCpf());
         paciente.setEmail(newPaciente.getEmail());
         paciente.setEndereco(newPaciente.getEndereco());
-        paciente.setFaturamento(newPaciente.getFaturamento());
         paciente.setNome(newPaciente.getNome());
-        paciente.setPrescricao(newPaciente.getPrescricao());
-        paciente.setProntuario(newPaciente.getProntuario());
         paciente.setSexo(newPaciente.getSexo());
 
         repository.save(paciente);

@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Paciente {
@@ -28,9 +27,6 @@ public class Paciente {
     @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Agendamento> agendamentos;
-    
-    @OneToOne
-    private Prontuario prontuario;
 
     // Um paciente pode ter várias precrições.
     @JsonIgnore
@@ -41,6 +37,10 @@ public class Paciente {
     @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Faturamento> faturamentos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "paciente")
+    private List<Prontuario> prontuarios;
 
     public Paciente() {
     }
@@ -107,14 +107,6 @@ public class Paciente {
 
     public void setPrescricao(List<Prescricao> prescricoes) {
         this.prescricoes = prescricoes;
-    }
-
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
     }
 
     public List<Faturamento> getFaturamento() {

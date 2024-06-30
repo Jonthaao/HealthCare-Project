@@ -1,11 +1,15 @@
 package com.br.FinalJayme.entities;
 
-import jakarta.persistence.CascadeType;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Medicamento {
@@ -14,13 +18,15 @@ public class Medicamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    // Um faturamento pode ter vários medicamentos
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Faturamento faturamento;
+    // N medicamentos para N faturamentos
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "medicamento_faturamento", joinColumns = @JoinColumn(name = "medicamento_id"), inverseJoinColumns = @JoinColumn(name = "faturamento_id"))
+    List<Faturamento> faturamentos;
 
-    // Uma prescrição pode ter vários medicamentos
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Prescricao prescricao;
+    // N medicamentos para N prescricoes
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "medicamento_prescricao", joinColumns = @JoinColumn(name = "medicamento_id"), inverseJoinColumns = @JoinColumn(name = "prescricao_id"))
+    List<Prescricao> prescricoes;
     
     private String nome;
     private String descricao;
@@ -29,49 +35,40 @@ public class Medicamento {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
-    public Faturamento getMedicamento() {
-        return faturamento;
+    public List<Faturamento> getFaturamento() {
+        return faturamentos;
     }
-
-    public void setFaturamento(Faturamento medicamento) {
-        this.faturamento = medicamento;
+    public void setFaturamento(List<Faturamento> faturamento) {
+        this.faturamentos = faturamento;
     }
-
-    public Prescricao getPrescricao() {
-        return prescricao;
+    public List<Prescricao> getPrescricoes() {
+        return prescricoes;
     }
-
-    public void setPrescricao(Prescricao prescricao) {
-        this.prescricao = prescricao;
+    public void setPrescricoes(List<Prescricao> prescricoes) {
+        this.prescricoes = prescricoes;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     public Double getValor() {
         return valor;
     }
-
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+
 
 }
