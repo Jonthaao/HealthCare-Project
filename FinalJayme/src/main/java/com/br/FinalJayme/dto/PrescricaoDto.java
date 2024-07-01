@@ -30,5 +30,13 @@ public class PrescricaoDto {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+
+    public String getReceita() {
+        return receita;
+    }
+
+    public void setReceita(String receita) {
+        this.receita = receita;
+    }
     
 }

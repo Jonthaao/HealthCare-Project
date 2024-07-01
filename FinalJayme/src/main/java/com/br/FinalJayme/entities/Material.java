@@ -3,12 +3,11 @@ package com.br.FinalJayme.entities;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
+
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -19,9 +18,8 @@ public class Material {
     private int id;
 
     // N materiais em N faturamentos
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "material_faturamento", joinColumns = @JoinColumn(name = "material_id"), inverseJoinColumns = @JoinColumn(name = "faturamento_id"))
-    List<Faturamento> faturamentos;
+    @ManyToMany(mappedBy = "materiais")
+    private List<Faturamento> faturamentos;
 
     private String nome;
     private String descricao;

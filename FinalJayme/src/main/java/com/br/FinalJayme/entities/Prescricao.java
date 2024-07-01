@@ -31,8 +31,9 @@ public class Prescricao {
 
     // N precrições para N medicamentos
     @JsonIgnore
-    @ManyToMany(mappedBy = "prescricoes", fetch = FetchType.EAGER)
-    List<Medicamento> medicamentos;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "prescricao_medicamento", joinColumns = @JoinColumn(name = "prescricao_id"), inverseJoinColumns = @JoinColumn(name = "medicamento_id"))
+    private List<Medicamento> medicamentos;
 
     // N médicos podemm ter N precrições
     @ManyToMany(fetch = FetchType.EAGER)

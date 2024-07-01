@@ -37,6 +37,8 @@ public class FaturamentoService {
     public String calcularTotal(@PathVariable("paciente_id") int paciente_id) {
         List<Faturamento> faturamentos = repository.findByPacienteIdAndStatus(paciente_id, true);
 
+        //colocar uma condição pra quando o paciente não existir ou for nulo ou status=false
+        
         Double valorTotal = 0.0;
 
         for (Faturamento faturamento : faturamentos) {
