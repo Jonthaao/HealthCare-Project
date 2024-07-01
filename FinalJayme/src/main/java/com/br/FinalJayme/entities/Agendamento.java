@@ -2,6 +2,8 @@ package com.br.FinalJayme.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,10 +23,12 @@ public class Agendamento {
     private boolean disponibilidade;
 
     // Um médico pode ter vários agendamentos
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Medico medico;
 
     // Um paciente pode ter vários agendamento
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Paciente paciente;
 

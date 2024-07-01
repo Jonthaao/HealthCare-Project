@@ -9,6 +9,7 @@ public class PrescricaoDto {
 
     private Medico medico;
     private Date data;
+    private String receita;
 
     public PrescricaoDto(Prescricao prescricao){
         this.data = prescricao.getData();

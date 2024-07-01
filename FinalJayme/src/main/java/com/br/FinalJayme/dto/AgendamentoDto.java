@@ -3,20 +3,22 @@ package com.br.FinalJayme.dto;
 import java.util.Date;
 
 import com.br.FinalJayme.entities.Agendamento;
-import com.br.FinalJayme.entities.Paciente;
 
 public class AgendamentoDto {
 
+    private String paciente;
     private Date data;
     private String hora;
     private boolean disponibilidade;
-    private Paciente pacienteDto;
+    private String medico;
 
     public AgendamentoDto(Agendamento agendamento) {
+        this.paciente = agendamento.getPaciente().getNome();
         this.data = agendamento.getData();
         this.hora = agendamento.getHora();
         this.disponibilidade = agendamento.isDisponibilidade();
-        this.pacienteDto = agendamento.getPaciente();
+        this.medico = agendamento.getMedico().getNome();
+
     }
 
     public Date getData() {
@@ -43,12 +45,20 @@ public class AgendamentoDto {
         this.disponibilidade = disponibilidade;
     }
 
-    public Paciente getPacienteDto() {
-        return pacienteDto;
+    public String getMedico() {
+        return medico;
     }
 
-    public void setPacienteDto(Paciente pacienteDto) {
-        this.pacienteDto = pacienteDto;
+    public void setMedico(String medico) {
+        this.medico = medico;
+    }
+
+    public String getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
     }
 
 }
