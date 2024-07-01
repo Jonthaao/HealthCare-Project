@@ -18,7 +18,6 @@ public class AgendamentoDto {
         this.hora = agendamento.getHora();
         this.disponibilidade = agendamento.isDisponibilidade();
         this.medico = agendamento.getMedico().getNome();
-
     }
 
     public Date getData() {
