@@ -23,17 +23,18 @@ public class Prescricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date data;
+    private String receita;
 
-    //N precriações para 1 paciente
+    // N precriações para 1 paciente
     @ManyToOne(cascade = CascadeType.REFRESH)
-    private Paciente paciente;  
+    private Paciente paciente;
 
-    //N precrições para N medicamentos
+    // N precrições para N medicamentos
     @JsonIgnore
     @ManyToMany(mappedBy = "prescricoes", fetch = FetchType.EAGER)
     List<Medicamento> medicamentos;
-   
-    //N médicos podemm ter N precrições
+
+    // N médicos podemm ter N precrições
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "prescricao_medico", joinColumns = @JoinColumn(name = "prescricao_id"), inverseJoinColumns = @JoinColumn(name = "medico_id"))
     List<Medico> medicos;
@@ -78,6 +79,12 @@ public class Prescricao {
         this.medicos = medicos;
     }
 
+    public String getReceita() {
+        return receita;
+    }
 
+    public void setReceita(String receita) {
+        this.receita = receita;
+    }
 
 }

@@ -2,23 +2,22 @@ package com.br.FinalJayme.dto;
 
 import java.util.Date;
 
-import com.br.FinalJayme.entities.Paciente;
 import com.br.FinalJayme.entities.Prontuario;
 
 public class ProntuarioDto {
 
+    private String paciente;
+    private String diagnostico;
     private String registros;
     private Date dataEntrada;
     private Date dataAlta;
-    private String diagnostico;
-    private Paciente paciente;
 
     public ProntuarioDto(Prontuario prontuario) {
         this.registros = prontuario.getRegistros();
         this.dataEntrada = prontuario.getDataEntrada();
         this.dataAlta = prontuario.getDataAlta();
         this.diagnostico = prontuario.getDiagnostico();
-        this.paciente = prontuario.getPaciente();
+        this.paciente = prontuario.getPaciente().getNome();
     }
 
     public String getRegistros() {
@@ -53,11 +52,11 @@ public class ProntuarioDto {
         this.diagnostico = diagnostico;
     }
 
-    public Paciente getPaciente() {
+    public String getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(String paciente) {
         this.paciente = paciente;
     }
 
