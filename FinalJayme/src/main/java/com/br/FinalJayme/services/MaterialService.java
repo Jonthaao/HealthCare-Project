@@ -23,7 +23,7 @@ public class MaterialService {
 
     public String cadastro(Material material) {
         repository.save(material);
-        return "Cadastrado com suceso!";
+        return "Cadastrado com sucesso!";
     }
 
 }

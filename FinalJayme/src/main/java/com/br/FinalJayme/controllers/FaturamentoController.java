@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +32,8 @@ public class FaturamentoController {
         return new ResponseEntity<>(service.listar(), HttpStatus.OK);
     }
 
-    // @GetMapping("/total/{pacienteId}")
-    // public Double getTotalByPacienteId(@PathVariable("id") int pacienteId) {
-    //     return service.calcularTotal(pacienteId);
-    // }
+    @GetMapping("/total/{paciente_id}")
+    public ResponseEntity<String> getTotalByPacienteId(@PathVariable("paciente_id") int paciente_id) {
+        return new ResponseEntity<>(service.calcularTotal(paciente_id), HttpStatus.OK);
+    }
 }
