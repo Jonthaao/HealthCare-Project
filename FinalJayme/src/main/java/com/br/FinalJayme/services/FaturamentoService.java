@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.br.FinalJayme.dto.FaturamentoDto;
 import com.br.FinalJayme.entities.Faturamento;
@@ -33,27 +34,32 @@ public class FaturamentoService {
         return faturamentos.stream().map(x -> new FaturamentoDto(x)).collect(Collectors.toList());
     }
 
-    public Double calcularTotal(Faturamento faturamento) {
-        
-        double valorTotalMaterial = 0.0;
-        for (Material material : faturamento.getMateriais()) {
-            valorTotalMaterial += material.getValor()*faturamento.getQuantidadeMaterial();
+    public String calcularTotal(@PathVariable("paciente_id") int paciente_id) {
+        List<Faturamento> faturamentos = repository.findByPacienteIdAndStatus(paciente_id, true);
+
+        Double valorTotal = 0.0;
+
+        for (Faturamento faturamento : faturamentos) {
+            double valorTotalMaterial = 0.0;
+            for (Material material : faturamento.getMateriais()) {
+                valorTotalMaterial += material.getValor() * faturamento.getQuantidadeMaterial();
+            }
+
+            double valorTotalMedicamento = 0.0;
+            for (Medicamento medicamento : faturamento.getMedicamentos()) {
+                valorTotalMedicamento += medicamento.getValor() * faturamento.getQuantidadeMedicamento();
+            }
+
+            double valorTotalProcedimento = 0.0;
+            for (Procedimento procedimento : faturamento.getProcedimentos()) {
+                valorTotalProcedimento += procedimento.getValor() * faturamento.getQuantidadeProcedimento();
+            }
+
+            valorTotal = valorTotalMaterial + valorTotalMedicamento + valorTotalProcedimento;
+
         }
 
-        double valorTotalMedicamento = 0.0;
-        for (Medicamento medicamento : faturamento.getMedicamentos()) {
-            valorTotalMedicamento += medicamento.getValor()*faturamento.getQuantidadeMedicamento();
-        }
-
-        double valorTotalProcedimento = 0.0;
-        for (Procedimento procedimento : faturamento.getProcedimentos()) {
-            valorTotalProcedimento += procedimento.getValor()*faturamento.getQuantidadeProcedimento();
-        }
-
-        Double valorTotalFaturamento = valorTotalMaterial + valorTotalMedicamento + valorTotalProcedimento;
-
-        return valorTotalFaturamento;
+        return "O valor total da conta do paciente é R$ "+valorTotal;
 
     }
-
 }
