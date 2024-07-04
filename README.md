@@ -1,7 +1,7 @@
 # ⚕️**Plataforma Healthcare com Arquitetura de Microserviços em Java**
 
-Objetivo: Desenvolver uma plataforma de healthcare que permita a gestão de pacientes, agendamentos de consultas, prontuários eletrônicos e faturamento. O sistema deve ser
-construído utilizando uma arquitetura de microserviços em Java, utilizando como padrão de projeto a arquitetura de camadas, Controllers, Entidades,Repository, DTO e Services.
+Objetivo: Desenvolver uma plataforma de healthcare que permita a gestão de pacientes, agendamentos de consultas, prontuários eletrônicos e faturamento. O sistema foi
+construído utilizando uma arquitetura de microserviços em Java, utilizando como padrão de projeto a arquitetura de camadas, Controllers, Entidades, Repository, DTO e Services.
  
  **Componentes do Sistema:**
 1. Serviço de Gestão de Pacientes:
