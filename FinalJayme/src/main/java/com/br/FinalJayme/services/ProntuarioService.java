@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,25 +27,25 @@ public class ProntuarioService {
         return prontuarios.stream().map(x -> new ProntuarioDto(x)).collect(Collectors.toList());
     }
 
-    public ResponseEntity<String> deletar(@PathVariable("id") int id) {
+    public String deletar(@PathVariable("id") int id) {
         Prontuario prontuario = repository.findById(id).orElse(null);
 
         if (prontuario != null) {
             repository.delete(prontuario);
-            return new ResponseEntity<>("Deletado com sucesso!", HttpStatus.OK);
+            return "Deletado com sucesso!";
         }
-        return new ResponseEntity<>("Nao encontrado!", HttpStatus.NOT_FOUND);
+        return "Nao encontrado!";
 
     }
 
-    public ResponseEntity<String> editar(Prontuario newProntuario, @PathVariable("id") int id) {
+    public String editar(Prontuario newProntuario, @PathVariable("id") int id) {
         Prontuario prontuario = repository.findById(id).orElse(null);
 
         if (prontuario == null) {
-            return new ResponseEntity<>("Prontuário não encontrado!", HttpStatus.OK);
+            return "Prontuário não encontrado!";
         }
 
-        prontuario.setConvenio(newProntuario.getConvenio());
+        prontuario.setConvenios(newProntuario.getConvenios());
         prontuario.setDataAlta(newProntuario.getDataAlta());
         prontuario.setDataEntrada(newProntuario.getDataEntrada());
         prontuario.setDiagnostico(newProntuario.getDiagnostico());
@@ -56,7 +54,7 @@ public class ProntuarioService {
 
         repository.save(prontuario);
 
-        return new ResponseEntity<>("Editado com sucesso!", HttpStatus.OK);
+        return "Editado com sucesso!";
     }
 
 }

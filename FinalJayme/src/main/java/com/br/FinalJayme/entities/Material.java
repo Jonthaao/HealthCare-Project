@@ -2,13 +2,13 @@ package com.br.FinalJayme.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -19,9 +19,9 @@ public class Material {
     private int id;
 
     // N materiais em N faturamentos
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "material_faturamento", joinColumns = @JoinColumn(name = "material_id"), inverseJoinColumns = @JoinColumn(name = "faturamento_id"))
-    List<Faturamento> faturamentos;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "materiais", fetch = FetchType.EAGER)
+    private List<Faturamento> faturamentos;
 
     private String nome;
     private String descricao;
@@ -33,6 +33,14 @@ public class Material {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Faturamento> getFaturamentos() {
+        return faturamentos;
+    }
+
+    public void setFaturamentos(List<Faturamento> faturamentos) {
+        this.faturamentos = faturamentos;
     }
 
     public String getNome() {
@@ -57,14 +65,6 @@ public class Material {
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public List<Faturamento> getFaturamentos() {
-        return faturamentos;
-    }
-
-    public void setFaturamentos(List<Faturamento> faturamentos) {
-        this.faturamentos = faturamentos;
     }
 
 }

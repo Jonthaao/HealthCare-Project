@@ -1,12 +1,15 @@
 package com.br.FinalJayme.dto;
 
 import java.util.Date;
+import java.util.List;
 
+import com.br.FinalJayme.entities.Convenio;
 import com.br.FinalJayme.entities.Prontuario;
 
 public class ProntuarioDto {
 
     private String paciente;
+    private List<Convenio> convenio;
     private String diagnostico;
     private String registros;
     private Date dataEntrada;
@@ -14,6 +17,7 @@ public class ProntuarioDto {
 
     public ProntuarioDto(Prontuario prontuario) {
         this.registros = prontuario.getRegistros();
+        this.convenio = prontuario.getConvenios();
         this.dataEntrada = prontuario.getDataEntrada();
         this.dataAlta = prontuario.getDataAlta();
         this.diagnostico = prontuario.getDiagnostico();
@@ -58,6 +62,14 @@ public class ProntuarioDto {
 
     public void setPaciente(String paciente) {
         this.paciente = paciente;
+    }
+
+    public List<Convenio> getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(List<Convenio> convenio) {
+        this.convenio = convenio;
     }
 
 }

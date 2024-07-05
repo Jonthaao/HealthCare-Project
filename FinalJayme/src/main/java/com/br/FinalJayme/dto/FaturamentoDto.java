@@ -1,23 +1,29 @@
 package com.br.FinalJayme.dto;
 
-import com.br.FinalJayme.entities.Faturamento;
-import com.br.FinalJayme.entities.Paciente;
+import java.util.List;
 
+import com.br.FinalJayme.entities.Faturamento;
 
 public class FaturamentoDto {
-
+    private String paciente;
     private Boolean status;
     private int quantidadeMaterial;
+    private List<MaterialDto> materiais;
     private int quantidadeProcedimento;
+    private List<ProcedimentoDto> procedimentos;
     private int quantidadeMedicamento;
-    private Paciente paciente;
+    private List<MedicamentoDto> medicamentos;
 
-    public FaturamentoDto(Faturamento faturamento){
+    public FaturamentoDto(Faturamento faturamento) {
+        this.paciente = faturamento.getPaciente().getNome();
         this.status = faturamento.getStatus();
-        this.paciente = faturamento.getPaciente();
         this.quantidadeMaterial = faturamento.getQuantidadeMaterial();
+        this.materiais = faturamento.getMateriais().stream().map(x -> new MaterialDto(x)).toList();
         this.quantidadeMedicamento = faturamento.getQuantidadeMedicamento();
+        this.medicamentos = faturamento.getMedicamentos().stream().map(x -> new MedicamentoDto(x)).toList();
         this.quantidadeProcedimento = faturamento.getQuantidadeProcedimento();
+        this.procedimentos = faturamento.getProcedimentos().stream().map(x -> new ProcedimentoDto(x)).toList();
+
     }
 
     public Boolean getStatus() {
@@ -52,13 +58,35 @@ public class FaturamentoDto {
         this.quantidadeMedicamento = quantidadeMedicamento;
     }
 
-    public Paciente getPaciente() {
+    public String getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(String paciente) {
         this.paciente = paciente;
     }
-    
-}
 
+    public List<MaterialDto> getMateriais() {
+        return materiais;
+    }
+
+    public void setMateriais(List<MaterialDto> materiais) {
+        this.materiais = materiais;
+    }
+
+    public List<MedicamentoDto> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(List<MedicamentoDto> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    public List<ProcedimentoDto> getProcedimentos() {
+        return procedimentos;
+    }
+
+    public void setProcedimentos(List<ProcedimentoDto> procedimentos) {
+        this.procedimentos = procedimentos;
+    }
+}

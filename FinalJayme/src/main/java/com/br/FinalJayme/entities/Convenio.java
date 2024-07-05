@@ -5,10 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Convenio {
@@ -21,7 +22,7 @@ public class Convenio {
 
     // Convênio pode ter vários prontuários
     @JsonIgnore
-    @OneToMany(mappedBy = "convenio")
+    @ManyToMany(mappedBy = "convenios", fetch = FetchType.EAGER)
     private List<Prontuario> prontuarios;
 
     public int getId() {
@@ -47,4 +48,13 @@ public class Convenio {
     public void setProntuario(List<Prontuario> prontuarios) {
         this.prontuarios = prontuarios;
     }
+
+    public List<Prontuario> getProntuarios() {
+        return prontuarios;
+    }
+
+    public void setProntuarios(List<Prontuario> prontuarios) {
+        this.prontuarios = prontuarios;
+    }
+
 }

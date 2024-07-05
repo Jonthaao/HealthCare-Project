@@ -11,7 +11,7 @@ public class PrescricaoDto {
     private Date data;
     private String receita;
 
-    public PrescricaoDto(Prescricao prescricao){
+    public PrescricaoDto(Prescricao prescricao) {
         this.data = prescricao.getData();
     }
 
@@ -30,5 +30,13 @@ public class PrescricaoDto {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
-    
+
+    public String getReceita() {
+        return receita;
+    }
+
+    public void setReceita(String receita) {
+        this.receita = receita;
+    }
+
 }
