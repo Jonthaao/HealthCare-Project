@@ -32,7 +32,11 @@ public class ProntuarioController {
     @GetMapping("/lista")
     public ResponseEntity<List<ProntuarioDto>> listar() {
         return new ResponseEntity<>(service.listar(), HttpStatus.OK);
+    }
 
+    @GetMapping("/registros/{paciente_id}")
+    public List<Prontuario> listarProntuarios(@PathVariable("paciente_id") int pacienteId) {
+        return service.listarRegistros(pacienteId);
     }
 
     @DeleteMapping("/excluir/{id}")

@@ -29,6 +29,10 @@ public class ProntuarioService {
         return prontuarios.stream().map(x -> new ProntuarioDto(x)).collect(Collectors.toList());
     }
 
+    public List<Prontuario> listarRegistros(@PathVariable("paciente_id") int pacienteId) {
+        return repository.findByPacienteId(pacienteId);
+    }
+
     public ResponseEntity<String> deletar(@PathVariable("id") int id) {
         Prontuario prontuario = repository.findById(id).orElse(null);
 
