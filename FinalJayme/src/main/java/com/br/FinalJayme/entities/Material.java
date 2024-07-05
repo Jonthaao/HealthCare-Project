@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,8 +19,7 @@ public class Material {
     private int id;
 
     // N materiais em N faturamentos
-    @JsonIgnore
-    @ManyToMany(mappedBy = "materiais", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "materiais")
     private List<Faturamento> faturamentos;
 
     private String nome;

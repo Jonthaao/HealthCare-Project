@@ -21,8 +21,9 @@ public class Medicamento {
     private int id;
 
     // N medicamentos para N faturamentos
+<<<<<<< HEAD
     @JsonIgnore
-    @ManyToMany(mappedBy = "medicamentos", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "medicamentos")
     private List<Faturamento> faturamentos;
 
     // N medicamentos para N prescricoes
@@ -30,11 +31,18 @@ public class Medicamento {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "medicamento_prescricao", joinColumns = @JoinColumn(name = "medicamento_id"), inverseJoinColumns = @JoinColumn(name = "prescricao_id"))
     List<Prescricao> prescricoes;
+=======
+    @ManyToMany(mappedBy = "medicamentos")
+    private List<Faturamento> faturamentos;
+
+    // N medicamentos para N prescricoes
+    @ManyToMany(mappedBy = "medicamentos", fetch = FetchType.EAGER)
+    private List<Prescricao> prescricoes;
+>>>>>>> 266c818c07fb6441ad2d43f070aa80ff526c54ac
 
     private String nome;
     private String descricao;
     private Double valor;
-
     public int getId() {
         return id;
     }
@@ -42,13 +50,21 @@ public class Medicamento {
     public void setId(int id) {
         this.id = id;
     }
+<<<<<<< HEAD
 
     public List<Faturamento> getFaturamento() {
         return faturamentos;
     }
 
-    public void setFaturamento(List<Faturamento> faturamento) {
-        this.faturamentos = faturamento;
+    public void setFaturamentos(List<Faturamento> faturamento) {
+        this.faturamentos = faturamentos;
+=======
+    public List<Faturamento> getFaturamentos() {
+        return faturamentos;
+    }
+    public void setFaturamentos(List<Faturamento> faturamentos) {
+        this.faturamentos = faturamentos;
+>>>>>>> 266c818c07fb6441ad2d43f070aa80ff526c54ac
     }
 
     public List<Prescricao> getPrescricoes() {

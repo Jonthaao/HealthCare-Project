@@ -38,5 +38,5 @@ public class PrescricaoDto {
     public void setReceita(String receita) {
         this.receita = receita;
     }
-
+    
 }
