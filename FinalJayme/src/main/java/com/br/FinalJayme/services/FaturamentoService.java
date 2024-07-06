@@ -37,9 +37,12 @@ public class FaturamentoService {
     public String calcularTotal(@PathVariable("paciente_id") int paciente_id) {
         List<Faturamento> faturamentos = repository.findByPacienteIdAndStatus(paciente_id, true);
 
-        //colocar uma condição pra quando o paciente não existir ou for nulo ou status=false
-        
         Double valorTotal = 0.0;
+
+        // Verifica se não há faturamentos para o paciente ou se a lista está vazia
+        if (faturamentos == null || faturamentos.isEmpty()) {
+            return "Paciente não encontrado ou não possui faturamentos em aberto (status verdadeiro).";
+        }
 
         for (Faturamento faturamento : faturamentos) {
             double valorTotalMaterial = 0.0;
@@ -61,7 +64,7 @@ public class FaturamentoService {
 
         }
 
-        return "O valor total da conta do paciente é R$ "+valorTotal;
+        return "O valor total da conta do paciente é R$ " + valorTotal;
 
     }
 }
