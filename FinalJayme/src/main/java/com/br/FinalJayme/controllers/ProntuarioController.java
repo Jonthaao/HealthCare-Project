@@ -36,13 +36,18 @@ public class ProntuarioController {
     }
 
     @DeleteMapping("/excluir/{id}")
-    public ResponseEntity<String> deletar(@PathVariable("id") int id) {
+    public String deletar(@PathVariable("id") int id) {
         return service.deletar(id);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<String> editar(Prontuario prontuario, @PathVariable("id") int id) {
+    public String editar(Prontuario prontuario, @PathVariable("id") int id) {
         return service.editar(prontuario, id);
+    }
+
+    @GetMapping("/registros/{paciente_id}")
+    public ResponseEntity<List<String>> buscaRegistros(@PathVariable("paciente_id") int paciente_id) {
+        return service.buscaRegistros(paciente_id);
     }
 
 }

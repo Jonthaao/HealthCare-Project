@@ -5,9 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -23,17 +25,17 @@ public class Paciente {
     private String endereco;
     private String sexo;
 
-    //Um paciente pode ter vários agendamentos
+    // Um paciente pode ter vários agendamentos
     @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Agendamento> agendamentos;
 
     // Um paciente pode ter várias precrições.
     @JsonIgnore
-    @OneToMany(mappedBy = "paciente")
+    @ManyToMany(mappedBy = "pacientes", fetch = FetchType.EAGER)
     private List<Prescricao> prescricoes;
-    
-    //Um paciente pode ter vários faturamentos.
+
+    // Um paciente pode ter vários faturamentos.
     @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private List<Faturamento> faturamentos;

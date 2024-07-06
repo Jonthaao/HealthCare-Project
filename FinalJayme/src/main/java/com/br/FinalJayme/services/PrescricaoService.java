@@ -48,7 +48,7 @@ public class PrescricaoService {
         }
 
         prescricao.setData(newPrescricao.getData());
-        prescricao.setPaciente(newPrescricao.getPaciente());
+        prescricao.setPacientes(newPrescricao.getPacientes());
         prescricao.setMedicamentos(newPrescricao.getMedicamentos());
         prescricao.setMedicos(newPrescricao.getMedicos());
 

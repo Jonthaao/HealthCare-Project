@@ -91,5 +91,4 @@ public class Prontuario {
     public void setConvenios(List<Convenio> convenios) {
         this.convenios = convenios;
     }
-
 }

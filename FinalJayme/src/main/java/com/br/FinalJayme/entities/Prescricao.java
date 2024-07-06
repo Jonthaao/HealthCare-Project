@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Prescricao {
@@ -26,8 +24,9 @@ public class Prescricao {
     private String receita;
 
     // N precriações para 1 paciente
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Paciente paciente;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "prescricao_paciente", joinColumns = @JoinColumn(name = "prescricao_id"), inverseJoinColumns = @JoinColumn(name = "paciente_id"))
+    private List<Paciente> pacientes;
 
     // N precrições para N medicamentos
     @JsonIgnore
@@ -56,12 +55,12 @@ public class Prescricao {
         this.data = data;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public List<Paciente> getPacientes() {
+        return pacientes;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
     public List<Medicamento> getMedicamentos() {

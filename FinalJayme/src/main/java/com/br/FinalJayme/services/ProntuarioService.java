@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -55,6 +57,19 @@ public class ProntuarioService {
         repository.save(prontuario);
 
         return "Editado com sucesso!";
+    }
+
+    public ResponseEntity<List<String>> buscaRegistros(@PathVariable("paciente_id") int paciente_id) {
+        List<Prontuario> prontuarios = repository.findByPacienteId(paciente_id);
+
+        if (!prontuarios.isEmpty()) {
+            List<String> registros = prontuarios.stream()
+                    .map(Prontuario::getRegistros)
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(registros, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
